@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">coding-contest-system</string>
+    <string name="password">Пароль</string>
+    <string name="login">Войти</string>
+    <string name="teacher">Преподаватель</string>
+    <string name="student">Студент</string>
+    <string name="cancel">Отмена</string>
+    <string name="edit">Редактировать</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="save">Сохранить</string>
+    <string name="email">Email</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="welcome">Добро пожаловать 👋</string>
+    <string name="registration">Регистрация</string>
+    <string name="welcome_student">Привет, %1$s %2$s 🎓</string>
+    <string name="contest_title">Контрольные</string>
+    <string name="contest_student_description">Просматривай доступные контрольные и задания</string>
+    <string name="results_title">Результаты</string>
+    <string name="results_student_description">Решай контрольные и получай мгновенную обратную связь</string>
+    <string name="welcome_teacher">Здравствуйте, %1$s %2$s 👨‍🏫</string>
+    <string name="contest_teacher_description">Создание и управление контрольными</string>
+    <string name="tasks_title">Задания</string>
+    <string name="tasks_description">Редактирование и обновление заданий</string>
+    <string name="students_title">Студенты</string>
+    <string name="students_description">Просмотр и управление студентами</string>
+    <string name="groups_title">Группы</string>
+    <string name="groups_description">Управление учебными группами</string>
+    <string name="results_teacher_description">Анализ успеваемости студентов</string>
+    <string name="welcome_guest">В системе контроля работ вы можете создавать и решать задания, получать мгновенную обратную связь и отслеживать прогресс.</string>
 </resources>
