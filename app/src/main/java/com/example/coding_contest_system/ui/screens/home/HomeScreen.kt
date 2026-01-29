@@ -16,8 +16,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.coding_contest_system.R
 import com.example.coding_contest_system.state.AuthState
 import com.example.coding_contest_system.model.Role
 import com.example.coding_contest_system.model.User
@@ -68,14 +71,14 @@ fun GuestHome(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Добро пожаловать 👋",
+            text = stringResource(R.string.welcome),
             style = MaterialTheme.typography.headlineMedium
         )
 
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = "В системе контроля работ вы можете создавать и решать задания, получать мгновенную обратную связь и отслеживать прогресс.",
+            text = stringResource(R.string.welcome_guest),
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
         )
@@ -86,7 +89,7 @@ fun GuestHome(
             onClick = onLoginClick,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Войти")
+            Text(stringResource(R.string.login))
         }
 
         Spacer(Modifier.height(12.dp))
@@ -95,7 +98,7 @@ fun GuestHome(
             onClick = onRegisterClick,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Регистрация")
+            Text(stringResource(R.string.registration))
         }
     }
 }
@@ -108,20 +111,20 @@ fun StudentHome(user: User) {
             .padding(24.dp)
     ) {
         Text(
-            text = "Привет, ${user.firstName} ${user.lastName} 🎓",
+            text = stringResource(R.string.welcome_student, user.firstName, user.lastName),
             style = MaterialTheme.typography.headlineMedium
         )
 
         Spacer(Modifier.height(16.dp))
 
         FeatureCard(
-            title = "Контрольные",
-            description = "Просматривай доступные контрольные и задания"
+            title = stringResource(R.string.contest_title),
+            description = stringResource(R.string.contest_student_description)
         )
 
         FeatureCard(
-            title = "Результаты",
-            description = "Решай контрольные и получай мгновенную обратную связь"
+            title = stringResource(R.string.results_title),
+            description = stringResource(R.string.results_student_description)
         )
     }
 }
@@ -134,17 +137,83 @@ fun TeacherHome(user: User) {
             .padding(24.dp)
     ) {
         Text(
-            text = "Здравствуйте, ${user.firstName} ${user.lastName} 👨‍🏫",
+            text = stringResource(R.string.welcome_teacher, user.firstName, user.lastName),
             style = MaterialTheme.typography.headlineMedium
         )
 
         Spacer(Modifier.height(16.dp))
 
-        FeatureCard("Контрольные", "Создание и управление контрольными")
-        FeatureCard("Задания", "Редактирование и обновление заданий")
-        FeatureCard("Студенты", "Просмотр и управление студентами")
-        FeatureCard("Группы", "Управление учебными группами")
-        FeatureCard("Результаты", "Анализ успеваемости студентов")
+        FeatureCard(
+            title = stringResource(R.string.contest_title),
+            description = stringResource(R.string.contest_teacher_description),
+        )
+        FeatureCard(
+            title = stringResource(R.string.tasks_title),
+            description = stringResource(R.string.tasks_description)
+        )
+        FeatureCard(
+            title = stringResource(R.string.students_title),
+            description = stringResource(R.string.students_description)
+        )
+        FeatureCard(
+            title = stringResource(R.string.groups_title),
+            description = stringResource(R.string.groups_description)
+        )
+        FeatureCard(
+            title = stringResource(R.string.results_title),
+            description = stringResource(R.string.results_teacher_description)
+        )
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenGuestPreview() {
+    HomeScreen(
+        authState = AuthState.Unauthorized
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenLoadingPreview() {
+    HomeScreen(
+        authState = AuthState.Loading
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenStudentPreview() {
+    HomeScreen(
+        authState = AuthState.Authorized(
+            user = User(
+                id = 1,
+                firstName = "Ivan",
+                lastName = "Petrov",
+                email = "ivan@student.com",
+                groupName = "14",
+                groupId = 1,
+                role = Role.STUDENT
+            )
+        )
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenTeacherPreview() {
+    HomeScreen(
+        authState = AuthState.Authorized(
+            user = User(
+                id = 2,
+                firstName = "Anna",
+                lastName = "Ivanova",
+                email = "anna@teacher.com",
+                groupName = "teacher",
+                groupId = -1,
+                role = Role.TEACHER
+            )
+        )
+    )
+}

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.coding_contest_system.data.api.ApiProvider
 import com.example.coding_contest_system.data.error.ApiException
 import com.example.coding_contest_system.data.repository.AuthRepository
+import com.example.coding_contest_system.state.RegisterState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -44,22 +45,4 @@ class RegisterViewModel : ViewModel() {
             }
         }
     }
-}
-
-data class RegisterState(
-    val firstName: String = "",
-    val lastName: String = "",
-    val email: String = "",
-    val password: String = "",
-    val confirmPassword: String = "",
-    val groupId: Long = 0,
-    val error: String? = null
-) {
-    val isValid: Boolean
-        get() =
-            firstName.isNotBlank() &&
-                    lastName.isNotBlank() &&
-                    email.isNotBlank() &&
-                    password.length >= 8 &&
-                    password == confirmPassword
 }
